@@ -4,6 +4,8 @@ py311/
 # credentials file
 token.json
 credentials.json
+credentials.yaml
+credentials.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
