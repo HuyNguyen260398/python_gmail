@@ -43,7 +43,7 @@ def main():
     # Define Key and Value for email search
     # For other keys (criteria): https://gist.github.com/martinrusev/6121028#file-imap-search
     key = 'FROM'
-    value = 'Petrolimex@petrolimex.com.vn'
+    value = 'prj.ecom.pydj@gmail.com'
 
     # Search for emails with sepcific key and value
     _, data = mail.search(None, key, value)
@@ -66,18 +66,30 @@ def main():
 
     # NOTE that a Message object consists of headers and payloads
 
-    for msg in msgs[::-1]:
-        for respond_part in msg:
-            if type(respond_part) is tuple:
-                my_msg = email.message_from_bytes((respond_part[1]))
-                print("_________________________________________")
-                print ("subj:", my_msg['subject'])
-                print ("from:", my_msg['from'])
-                print ("body:", my_msg['body'])
+    # for msg in msgs[::-1]:
+    #     for respond_part in msg:
+    #         if type(respond_part) is tuple:
+    #             my_msg = email.message_from_bytes((respond_part[1]))
+    #             print("_________________________________________")
+    #             print ("subj:", my_msg['subject'])
+    #             print ("from:", my_msg['from'])
+    #             print ("body:", my_msg['body'])
                 # for part in my_msg.walk():
                 #     print(part.get_content_type())
                     # if part.get_content_type() == 'text/plain':
                     #     print(part.get_payload())
+
+    # Debuging - Get 1st mail in email list
+    for respond_part in msgs[-1]:
+        # print(type(respond_part))
+        if type(respond_part) is tuple:
+            my_msg = email.message_from_bytes((respond_part[1]))
+            # print(type(my_msg))
+            print("_________________________________________")
+            print("subj:", my_msg['subject'])
+            print("from:", my_msg['from'])
+            print("body:", my_msg['body'])
+            # print("_________________________________________")
 
 if __name__ == '__main__':
     main()
